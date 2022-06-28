@@ -154,13 +154,13 @@ public class GoEChargerHandler extends GoEChargerBaseHandler {
                     return UnDefType.UNDEF;
                 }
                 int count = 0;
-                if (goeResponse.energy[4] > 0) { // current P1
+                if (goeResponse.energy[4] > 0.0) { // current P1
                     count++;
                 }
-                if (goeResponse.energy[5] > 0) { // current P2
+                if (goeResponse.energy[5] > 0.0) { // current P2
                     count++;
                 }
-                if (goeResponse.energy[6] > 0) { // current P3
+                if (goeResponse.energy[6] > 0.0) { // current P3
                     count++;
                 }
                 return new DecimalType(count);
@@ -191,38 +191,38 @@ public class GoEChargerHandler extends GoEChargerBaseHandler {
                     return UnDefType.UNDEF;
                 }
                 // values come in as A*10, 41 means 4.1A
-                return new QuantityType<>((Double) (goeResponse.energy[4] / 10d), Units.AMPERE);
+                return new QuantityType<>(goeResponse.energy[4] / 10.0, Units.AMPERE);
             case CURRENT_L2:
                 if (goeResponse.energy == null) {
                     return UnDefType.UNDEF;
                 }
-                return new QuantityType<>((Double) (goeResponse.energy[5] / 10d), Units.AMPERE);
+                return new QuantityType<>(goeResponse.energy[5] / 10.0, Units.AMPERE);
             case CURRENT_L3:
                 if (goeResponse.energy == null) {
                     return UnDefType.UNDEF;
                 }
-                return new QuantityType<>((Double) (goeResponse.energy[6] / 10d), Units.AMPERE);
+                return new QuantityType<>(goeResponse.energy[6] / 10.0, Units.AMPERE);
             case POWER_L1:
                 if (goeResponse.energy == null) {
                     return UnDefType.UNDEF;
                 }
                 // values come in as kW*10, 41 means 4.1kW
-                return new QuantityType<>(goeResponse.energy[7] * 100, Units.WATT);
+                return new QuantityType<>(goeResponse.energy[7] * 100.0, Units.WATT);
             case POWER_L2:
                 if (goeResponse.energy == null) {
                     return UnDefType.UNDEF;
                 }
-                return new QuantityType<>(goeResponse.energy[8] * 100, Units.WATT);
+                return new QuantityType<>(goeResponse.energy[8] * 100.0, Units.WATT);
             case POWER_L3:
                 if (goeResponse.energy == null) {
                     return UnDefType.UNDEF;
                 }
-                return new QuantityType<>(goeResponse.energy[9] * 100, Units.WATT);
+                return new QuantityType<>(goeResponse.energy[9] * 100.0, Units.WATT);
             case POWER_ALL:
                 if (goeResponseBase.energy == null) {
                     return UnDefType.UNDEF;
                 }
-                return new QuantityType<>(goeResponseBase.energy[11] * 10, Units.WATT);
+                return new QuantityType<>(goeResponseBase.energy[11] * 10.0, Units.WATT);
         }
         return UnDefType.UNDEF;
     }
